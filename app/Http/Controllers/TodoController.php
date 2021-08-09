@@ -18,7 +18,6 @@ class TodoController extends Controller
     public function store (StoreRequest $request) {
         $todo = new Todo;
         $todo->comment = $request->comment;
-        $todo->state = false;
         $todo->save();
         return redirect('/');
     }
