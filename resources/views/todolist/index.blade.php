@@ -43,7 +43,8 @@
                 <td>
                     <form method="post">
                         @csrf
-                        <button type="submit" class="delBtn">削除</button>
+                        @method('delete')
+                        <button type="submit" name="id" class="delBtn" value="{{ $todo->id }}">削除</button>
                     </form>
                 </td>
             </tr>
