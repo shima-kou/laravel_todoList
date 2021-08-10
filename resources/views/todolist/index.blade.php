@@ -28,7 +28,7 @@
         <tbody>
             @foreach ($todos as $todo)
             <tr>
-                <td>{{ ($loop->index + 1) }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $todo->comment }}</td>
                 <td>
                     <form method="post">
@@ -41,7 +41,7 @@
                     </form>
                 </td>
                 <td>
-                    <form method="post">
+                    <form action="/{{$todo->id}}" method="post">
                         @csrf
                         @method('delete')
                         <button type="submit" name="id" class="delBtn" value="{{ $todo->id }}">削除</button>
