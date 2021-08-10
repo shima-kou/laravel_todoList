@@ -29,4 +29,12 @@ class TodoController extends Controller
         return redirect('/');
     }
 
+    public function patch($id)
+    {
+        $todo = todo::find($id);
+        $todo->state = !$todo->state;
+        $todo->save();
+        return redirect('/');
+    }
+
 }

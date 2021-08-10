@@ -31,12 +31,13 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $todo->comment }}</td>
                 <td>
-                    <form method="post">
+                    <form action="/{{$todo->id}}" method="post">
                         @csrf
+                        @method('patch')
                         @if ($todo->state)
-                            <button type="submit" class="stateBtn">完了</button>
+                            <button type="submit" name="id" class="stateBtn" value="{{ $todo->id }}">完了</button>
                         @else
-                            <button type="submit" class="stateBtn">作業中</button>
+                            <button type="submit" name="id" class="stateBtn" value="{{ $todo->id }}">作業中</button>
                         @endif
                     </form>
                 </td>
