@@ -1,1 +1,17 @@
-//
+input[type="text"] {
+    min-height: 21px;
+}
+
+.error-message {
+    font-size: 13px;
+    line-height: 1.5;
+    color: red;
+}
+
+.status_list {
+    list-style: none;
+    padding-inline-start: 0;
+    > li {
+        display: inline-block;
+    }
+}
