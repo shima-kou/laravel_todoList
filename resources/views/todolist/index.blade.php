@@ -35,9 +35,9 @@
                         @csrf
                         @method('patch')
                         @if ($todo->state)
-                            <button type="submit" name="id" class="stateBtn" value="{{ $todo->id }}">完了</button>
+                            <button type="submit" class="stateBtn">完了</button>
                         @else
-                            <button type="submit" name="id" class="stateBtn" value="{{ $todo->id }}">作業中</button>
+                            <button type="submit" class="stateBtn">作業中</button>
                         @endif
                     </form>
                 </td>
@@ -45,7 +45,7 @@
                     <form action="/{{$todo->id}}" method="post">
                         @csrf
                         @method('delete')
-                        <button type="submit" name="id" class="delBtn" value="{{ $todo->id }}">削除</button>
+                        <button type="submit" class="delBtn" >削除</button>
                     </form>
                 </td>
             </tr>
