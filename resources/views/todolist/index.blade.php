@@ -31,8 +31,9 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $todo->comment }}</td>
                 <td>
-                    <form method="post">
+                    <form action="/{{$todo->id}}" method="post">
                         @csrf
+                        @method('patch')
                         @if ($todo->state)
                             <button type="submit" class="stateBtn">完了</button>
                         @else
@@ -44,7 +45,7 @@
                     <form action="/{{$todo->id}}" method="post">
                         @csrf
                         @method('delete')
-                        <button type="submit" name="id" class="delBtn" value="{{ $todo->id }}">削除</button>
+                        <button type="submit" class="delBtn" >削除</button>
                     </form>
                 </td>
             </tr>
