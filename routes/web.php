@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'TodoController@index');
-Route::post('/', 'TodoController@store');
-Route::delete('/{id}', 'TodoController@delete');
-Route::patch('/{id}', 'TodoController@patch');
+Route::get('/{state?}', 'TodoController@index');
+Route::post('/{state?}', 'TodoController@store');
+Route::delete('/{id}{state?}', 'TodoController@delete');
+Route::patch('/{id}{state?}', 'TodoController@patch');
