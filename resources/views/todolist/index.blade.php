@@ -21,7 +21,8 @@
             </li>
             <li>
                 <label for="works">
-                    <input id="works"
+                    <input
+                        id="works"
                         type="radio"
                         name="status"
                         value="works"
