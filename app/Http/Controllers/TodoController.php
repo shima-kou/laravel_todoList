@@ -10,9 +10,25 @@ use App\ToDo;
 class TodoController extends Controller
 {
     //
-    public function index() {
+    public function index(Request $request) {
+
+        if ($request->has('status')) {
+            $request->session()->put('status', $request->input('status'));
+        }
+        $status = $request->session()->get('status');
+
+        if ($status === 'works'){
+            $todos = Todo::where('state', false)->get();
+            return view('todolist.index', compact('todos', 'status'));
+        }
+
+        if($status === 'complete') {
+            $todos = Todo::where('state', true)->get();
+            return view('todolist.index', compact('todos', 'status'));
+        }
+
         $todos = Todo::all();
-        return view('todolist.index', ['todos' => $todos]);
+        return view('todolist.index', ['todos' => $todos, 'status' => 'all']);
     }
 
     public function store (StoreRequest $request) {
@@ -36,5 +52,4 @@ class TodoController extends Controller
         $todo->save();
         return redirect('/');
     }
-
 }

@@ -13,5 +13,6 @@
   <main>
     @yield('body')
   </main>
+  @yield('scripts')
 </body>
 </html>

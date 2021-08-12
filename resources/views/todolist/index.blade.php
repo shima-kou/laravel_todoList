@@ -4,18 +4,49 @@
 
 @section('body')
 <div class="todoList-wrap">
-    <ul class="status_list">
-        <li>
-            <label for="allList"><input id="allList" type="radio" name="status" value="全て" checked />全て</label>
-        </li>
-        <li>
-            <label for="nowList"><input id="nowList" type="radio" name="status" value="作業中" />作業中</label>
-        </li>
-        <li>
-            <label for="complete"><input id="complete" type="radio" name="status" value="完了" />完了</label>
-        </li>
-    </ul>
-
+    <form method="get" name="statusChange">
+        <ul class="status_list" >
+            <li>
+                <label for="all">
+                    <input
+                        id="all"
+                        type="radio"
+                        name="status"
+                        value="all"
+                        onclick="statusLink();"
+                        {{ $status == 'all' ? 'checked' : '' }}
+                    />
+                    全て
+                </label>
+            </li>
+            <li>
+                <label for="works">
+                    <input
+                        id="works"
+                        type="radio"
+                        name="status"
+                        value="works"
+                        onclick="statusLink();"
+                        {{ $status == 'works' ? 'checked' : '' }}
+                    />
+                    作業中
+                </label>
+            </li>
+            <li>
+                <label for="complete">
+                    <input
+                        id="complete"
+                        type="radio"
+                        name="status"
+                        value="complete"
+                        onclick="statusLink();"
+                        {{ $status == 'complete' ? 'checked' : '' }}
+                    />
+                    完了
+                </label>
+            </li>
+        </ul>
+    </form>
     <table class="todoTable">
         <thead>
             <tr>
@@ -45,6 +76,7 @@
                     <form action="/{{$todo->id}}" method="post">
                         @csrf
                         @method('delete')
+                        <input type="hidden" name="status" value="{{ $status }}">
                         <button type="submit" class="delBtn" >削除</button>
                     </form>
                 </td>
@@ -58,6 +90,7 @@
         <div>
             <form method="post">
                 @csrf
+                <input type="hidden" name="status" value="{{ $status }}">
                 <input type="text" name="comment" class="task-input">
                 <button type="submit" class="addBtn">追加</button>
             </form>
@@ -67,4 +100,11 @@
         </div>
     </div>
 </div>
+@section('scripts')
+    <script>
+        const statusLink = () => {
+            document.statusChange.submit();
+        }
+    </script>
+@endsection
 @endsection
